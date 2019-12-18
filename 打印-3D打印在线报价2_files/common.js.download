@@ -13,7 +13,6 @@
  var homeUrl = 'http://www.tteow.xyz/';
 //var homeUrl = 'http://www.tteow.xyz/'; //首页
 
-var mobileLinkUrl = 'http://www.tteow.xyz/';
 // cookie路径
 var setCookieUrl = '/';
 // 获取浏览器信息
