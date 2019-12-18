@@ -1,19 +1,19 @@
 // http://47.106.92.209:8080/shopping/
 // http://192.168.10.127:8080/shopping/
- var ajaxUrl = 'https://www.qsy3d.com/website/';
+ var ajaxUrl = 'http://www.tteow.xyz/';
 // var ajaxUrl = 'http://www.onlyoneu.com/';
 //var ajaxUrl = 'http://192.168.181.62:9255/';
 // var ajaxUrl = 'http://192.168.181.57:9255/';
 // var ajaxUrl = 'http://192.168.181.60:9255/';
 //SEO测试
-// var ajaxUrl = 'https://www.qsy13.com/website/';
+// var ajaxUrl = 'http://www.tteow.xyz/';
 //测试服
 // var ajaxUrl = 'http://192.168.181.13:9255/';
 // var ajaxUrl = 'http://192.168.181.13:9257/';
- var homeUrl = 'https://www.qsy3d.com/';
-//var homeUrl = 'https://www.qsy13.com/'; //首页
+ var homeUrl = 'http://www.tteow.xyz/';
+//var homeUrl = 'http://www.tteow.xyz/'; //首页
 
-var mobileLinkUrl = 'http://m.qsy3d.com/';
+var mobileLinkUrl = 'http://www.tteow.xyz/';
 // cookie路径
 var setCookieUrl = '/';
 // 获取浏览器信息
