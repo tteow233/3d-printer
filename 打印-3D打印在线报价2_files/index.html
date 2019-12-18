@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://webpage.qidian.qq.com/2/chat/pc/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta name="description" content="腾讯企点,WebIM,网页接待"><meta name="keywords" content="腾讯，腾讯企点"><title>在线咨询</title><link rel="dns-prefetch" href="https://p.qpic.cn/"><link rel="dns-prefetch" href="https://bqq.gtimg.com/"><link rel="dns-prefetch" href="https://admin.qidian.qq.com/"><link rel="dns-prefetch" href="https://report.huatuo.qq.com/"><link rel="dns-prefetch" href="https://pingtas.qq.com/"><link rel="dns-prefetch" href="https://chat.qidian.qq.com/"><link rel="dns-prefetch" href="https://badjs.qidian.qq.com/"><link rel="stylesheet" type="text/css" href="./chat-2a0a92501.css"><link rel="shortcut icon" href="https://bqq.gtimg.com/qidian/chatClient/release/comp/img/fav.ico" type="image/x-icon">
+<script type="text/javascript">
+(function() {
+    function loadScript (url, cb, fail, charset = 'utf-8') {
+        var head = document.getElementsByTagName('head')[0];
+        var js = document.createElement('script');
+        js.setAttribute('type', 'text/javascript');
+        js.setAttribute('src', url);
+        js.setAttribute('charset', charset);
+        head.appendChild(js);
+        if (document.all) {
+            js.onreadystatechange = function () {
+                if (js.readyState === 'load' || js.readyState === 'complete') {
+                    if (typeof cb === 'function') {
+                        cb(js);
+                    }
+                }
+            }
+        } else {
+            js.onload = function () {
+                if (typeof cb === 'function') {
+                    cb(js);
+                }
+            }
+        }
+        js.onerror = function () {
+            if (typeof fail === 'function') {
+                fail(js);
+            }
+        }
+    }
+
+    var emonitorUrl = '//mat1.gtimg.com/www/js/emonitor/index_20190620.js';
+    loadScript(emonitorUrl, function () {
+        var isTimingReported = false;
+        var _MAXTIMEOUT = 10000;
+        var nativeToString = Object.prototype.toString;
+        var bossInfo = {
+            page: '//btrace.qq.com/kvcollect?BossId=6529&Pwd=1714580587', //页面质量上报
+            error: '//btrace.qq.com/kvcollect?BossId=6527&Pwd=1102151080', // 页面错误上报
+            slowlog: '//btrace.qq.com/kvcollect?BossId=6523&Pwd=1202531240', //慢日志上报
+            cgi: '//btrace.qq.com/kvcollect?BossId=6528&Pwd=96045012', // cgi上报
+            resource: '//btrace.qq.com/kvcollect?BossId=6958&Pwd=1123576360', // 素材质量上报
+            flowlog: '//btrace.qq.com/kvcollect?BossId=6526&Pwd=878966364' // 流水日志上报
+        };
+        var uniqueIdCnt = [];
+        var emonitorIns = emonitor.create({
+            baseUrl: bossInfo.error,
+            name: 'webim',
+            cgi: {
+                baseUrl: bossInfo.cgi,
+                sampling: 1
+            },
+            logs: {
+                baseUrl: bossInfo.flowlog
+            }
+        });
+
+        function doCdnReport() {
+            var emRcInfo = emonitor.getCdnTiming();
+            for (var emRc in emRcInfo) {
+                if (emRcInfo[emRc].length > 0) {
+                    emRcInfo[emRc].forEach(function(re) {
+                        emonitorIns
+                            .config({
+                                baseUrl: bossInfo.resource
+                            })
+                            .send(re);
+                    });
+                }
+            }
+        }
+
+        setTimeout(function () {
+            if (!isTimingReported) {
+                var _resources = emonitor.getRcTiming();
+                try {
+                    if (nativeToString.call(_resources) === '[object Array]') {
+                        var _resourcesLen = _resources.length;
+                        var _jsonEntries = [];
+                        for (var _i = 0; _i < _resourcesLen; _i++) {
+                            _jsonEntries.push(
+                                _resources[_i].starttime +
+                                '|' +
+                                _resources[_i].duration +
+                                '|' +
+                                _resources[_i].name
+                            );
+                        }
+                        emonitorIns
+                            .config({
+                                baseUrl: bossInfo.slowlog
+                            })
+                            .send({
+                                json_entries: JSON.stringify(_jsonEntries)
+                            }, true);
+
+                        emonitorIns
+                            .config({
+                                baseUrl: bossInfo.error
+                            });
+                    }
+                } catch (err) {
+                    console.warn('emonitorIns send', err);
+                }
+            }
+        }, _MAXTIMEOUT);
+
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                if (!isTimingReported) {
+                    if (typeof onLoad === 'function') {
+                        onLoad();
+                    } else {
+                        emonitorIns
+                            .config({
+                                baseUrl: bossInfo.page
+                            })
+                            .send(emonitor.getPfTiming());
+
+                        emonitorIns.config({
+                            baseUrl: bossInfo.error
+                        });
+                    }
+                    isTimingReported = true;
+                }
+            }, 0);
+        }, false);
+    });
+})();
+</script><script type="text/javascript" src="./index_20190620.js.download" charset="utf-8"></script></head><body><!-- <div class="page skin-default page-inframe"> --><div class="page page-minify skin-blue"><div class="main"><div class="mod-title"><div class="title-normal"><p class="title"><a href="javascript:;" class="btn-back"><i class="icon-arrow-down"></i></a><span class="name">在线咨询</span></p><div class="call-group"></div></div><div class="title-minify"><i class="icon-bubble"></i> <span class="num unread-msg-num hidden"></span><p class="text"><span class="name"></span><span class="status">服务连接中</span></p></div></div><div class="chat-list"><div class="list-wrap"><div class="initial-loading" style="display: none;"><i class="loading loading-b"></i><div class="msg-sys">   <div class="text">正在获取鉴权信息</div></div></div><a href="https://qidian.qq.com/agreement/verified.html?from=webim" target="_blank" class="tencent-certification $$$common_tencent_certification$$$"></a></div><div class="msg-autocomplete"></div></div><div class="chat-post"><textarea class="post-area" placeholder="请输入，按Enter直接发送消息，Ctrl+Enter换行" maxlength="4500"></textarea><div class="act-list"><a class="btn-upload" href="javascript:;" title="上传图片"><i class="icon-upload"></i></a> <input type="file" multiple="multiple" accept="image/*"> <a class="btn-face" href="javascript:;" title="输入表情"><i class="icon-face"></i></a> <a href="javascript:;" class="btn-send enabled" title="发送">发送</a><!--[if IE]><div class="upload-placeholder"><span id="btn-swfupload"></span></div><![endif]--></div></div><div class="chat-face"><i class="arrow"></i><div class="nano"><div class="nano-content"><ul></ul></div></div></div></div><div class="sidebar"><div class="corp-loading"><i class="loading loading-b"></i><p class="text">正在加载企业信息</p></div></div></div><script type="text/javascript">var __domain = {chat: "chat", admin: "admin", source: "bqq.gtimg"}</script><script type="text/javascript" src="./socket.io.js.download"></script><script type="text/javascript" src="./jquery-1.12.4.min.js.download"></script><script type="text/javascript" src="./emoji.js.download"></script><script type="text/javascript" src="./i18n.js.download"></script><!--[if IE]><script type="text/javascript" src="//bqq.gtimg.com/qidian/chatClient/release/comp/js/lib/webuploader.flashonly.min.js"></script><![endif]--><!--[if (IE 8)|(IE 9)]><script src="//bqq.gtimg.com/qidian/chatClient/release/comp/js/lib/jquery.transport.xdr.min.js"></script>
+        <script src="//bqq.gtimg.com/qidian/chatClient/release/comp/js/lib/JSON.js"></script><![endif]--><script type="text/javascript" crossorigin="anonymous" src="./chat-a5fe5abce.js.download"></script><script language="javascript">(function(){var node=document.createElement("script"),script=document.getElementsByTagName("script")[0];node.src="//pingjs.qq.com/tcss.ping.https.js";node.type="text/javascript";node.onload=node.onerror=node.onreadystatechange=function(){/loaded|complete|undefined/.test(node.readyState)&&function(){node.onload=node.onerror=node.onreadystatechange=null;node.parentNode.removeChild(node);node=undefined;typeof pgvMain != "undefined" && pgvMain();}();};script.parentNode.insertBefore(node,script);} )();</script></body></html>

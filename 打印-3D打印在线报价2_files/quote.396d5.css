@@ -1,0 +1,1513 @@
+.titleList li .quote {
+    color: #277dc2;
+}
+
+.content {
+    background-color: #fff;
+    padding: 20px 0 40px 0;
+}
+
+.upBox {
+    width: 100%;
+    height: 50px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.upBox .progressShow {
+    font-size: 14px;
+    color: #666;
+    position: absolute;
+    left: 180px;
+    top: 18px;
+}
+
+.upBox .upFileBox {
+    width: 150px;
+    height: 50px;
+    background-color: #eeeeee;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.upFileBox .upFileBtn {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    background-color: #535353;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 8px;
+}
+
+.upFileBox .upFileBtn .icon-cloud-upload {
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+}
+
+.upBox .noDrawingBtn {
+    width: 150px;
+    height: 50px;
+    margin-left: 20px;
+    font-size: 16px;
+    position: absolute;
+    top: 0px;
+    left: 170px;
+    /* display: none; */
+}
+
+.noDrawingBtn:hover {
+    cursor: pointer;
+}
+
+.upBox button {
+    width: 104px;
+    height: 34px;
+    background-color: #535353;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.upBox .manualService {
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    background-color: #535353;
+    font-size: 16px;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+.upBox .phone {
+    /* position: absolute;
+    top: 25px;
+    right: 50px; */
+    font-size: 14px;
+    color: #666;
+    position: absolute;
+    top: 5px;
+    right: 180px;
+}
+
+.upBox .phone img {
+    vertical-align: middle;
+}
+
+.upBox .phone .phoneNumber {
+    font-size: 18px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.fileMessageBox {
+    position: relative;
+}
+
+.fileMessageBox .formHeaderUl {
+    width: 100%;
+    height: 46px;
+    background-color: #dcdcdc;
+    border: 1px solid transparent;
+}
+
+.formHeaderUl li {
+    height: 100%;
+    float: left;
+    line-height: 46px;
+    font-size: 14px;
+    color: #666;
+    border-right: 1px solid #b7b7b7;
+    text-align: center;
+}
+
+.formHeaderUl img {
+    vertical-align: middle;
+    margin:-2px 0 0 5px;
+}
+
+.formHeaderUl img:hover {
+    cursor: pointer;
+}
+
+.fileMessageBox .serialNumber {
+    width: 66px;
+    font-size: 14px;
+    color: #666;
+}
+
+.fileMessageBox .thumbnail {
+    width: 165px;
+    position: relative;
+}
+
+.thumbnail .parseFailure {
+    width: 100%;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    color: red;
+    position: absolute;
+    bottom: 5px;
+    display: none;
+    /* background-color: #ccc; */
+}
+
+.thumbnail .parseFailure:hover {
+    cursor: pointer;
+}
+
+.fileMessageBox .partInfo {
+    width: 235px;
+}
+
+.fileMessageBox .materials {
+    width: 225px;
+}
+
+.fileMessageBox .surfaceTreatment {
+    width: 150px;
+}
+
+.surfaceTreatment .surfaceSelect {
+    width: 120px;
+    height: 32px;
+    outline: none;
+    margin-top: 20px;
+}
+
+.pantone {
+    margin-top: 20px;
+    display: none;
+}
+
+.pantone span {
+    font-size: 12px;
+    color: #666;
+}
+
+.pantone .pantoneValue {
+    width: 80px;
+    height: 30px;
+    padding-left: 3px;
+}
+
+.pantoneHint {
+    font-size: 12px;
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+}
+
+.surfaceTreatment .isHave {
+    text-align: center;
+    font-size: 16px;
+    color: #ccc;
+    display: none;
+}
+
+.fileMessageBox .number {
+    width: 130px;
+}
+
+.number .nameText {
+    font-size: 12px;
+    color: #666;
+    margin-top: 20px;
+}
+
+.fileMessageBox .deliveryTime {
+    width: 135px;
+}
+
+.fileMessageBox .operation {
+    width: 130px;
+    border-right: none;
+}
+
+.printNotice {
+    position: absolute;
+    left: 400px;
+    top: 15px;
+    color: #666;
+}
+
+.character {
+    position: absolute;
+    left: 525px;
+    top: 15px;
+    color: #666;
+}
+
+.monthlyBalance {
+    position: absolute;
+    left: 650px;
+    top: 15px;
+    color: #666;
+}
+
+/* -----------------文件列表--------------【 */
+
+.fileListUl {
+    background-color: #fff;
+    /* overflow: hidden; */
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    min-height: 200px;
+    /* position: relative; */
+}
+
+.fileInfoUl {
+    /* overflow: hidden; */
+    min-height: 200px;
+}
+
+.fileInfoUl>div {
+    float: left;
+    min-height: 200px;
+    border-right: 1px solid #b7b7b7;
+    text-align: center;
+    position: relative;
+}
+
+.fileInfoUl .serialNumber {
+    line-height: 200px;
+}
+
+.fileListUl .fileListItem {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.thumbnail img {
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.thumbnail .example {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #dcdcdd;
+    color: #fff;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+}
+
+.fileInfoUl .partInfo {
+    font-size: 12px;
+    color: #666;
+    text-align: left;
+    padding: 0px 0 0 10PX;
+}
+
+.fileInfoUl .partInfo>p {
+    margin-top: 18px;
+    width: 215px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.fileInfoUl .partInfo .unitText {
+    margin-bottom: 0;
+}
+
+.nameText #unitSelect {
+    width: 80px;
+    height: 25px;
+    outline: none;
+    border-radius: 3px;
+}
+
+.materials select {
+    width: 200px;
+    height: 32px;
+    outline: none;
+    margin-top: 20px;
+}
+
+.fileInfoUl .materials,
+.fileInfoUl .surfaceTreatment {
+    /* padding-top: 20px; */
+}
+
+.surfaceTreatment .surfaceTreatmentSelect {
+    width: 110px;
+    height: 32px;
+    outline: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.numberBox {
+    display: inline-block;
+    line-height: 28px;
+    width: 100px;
+    height: 28px;
+    vertical-align: middle;
+    margin-top: 20px;
+}
+
+.numberBox .text {
+    float: left;
+    margin-right: 3px;
+}
+
+.chechNumberBox {
+    overflow: hidden;
+}
+
+.numberBox .icon {
+    display: inline-block;
+    width: 30px;
+    height: 28px;
+    border: solid 1px #d2d3d4;
+    text-align: center;
+    line-height: 28px;
+    float: left;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.chechNumberBox .subtract {
+    margin-bottom: 6px;
+}
+
+.numberBox .numberInput {
+    width: 40px;
+    height: 28px;
+    border: none;
+    border-top: solid 1px #d2d3d4;
+    border-bottom: solid 1px #d2d3d4;
+    float: left;
+    text-align: center;
+}
+
+.deliveryTime>p {
+    font-size: 12px;
+    color: #666;
+}
+
+.deliveryTime>p span {
+    color: #e42e2d;
+}
+
+.deliveryTime #deliveryTimeSelect {
+    width: 104px;
+    height: 30px;
+    outline: none;
+}
+
+.deliveryTime .lowest {
+    margin: 17px 0 10px 0;
+}
+
+.deliveryTime .totalPrice {
+    margin: 10px 0 10px 0;
+}
+
+.deliveryTime .discountPrice {
+    margin: 0px 0 10px 0;
+    position: absolute;
+    opacity: 0;
+}
+
+.deliveryTime .deliveryTimeHint {
+    margin-bottom: 10px;
+    color: #999;
+}
+
+.fileInfoUl .operation a {
+    color: #535353;
+    font-size: 12px;
+}
+
+.operation .icon-trash {
+    font-size: 38px;
+    color: #999;
+}
+
+.operation .deleteBtn {
+    margin-top: 30px;
+}
+
+.deleteBtn i:hover {
+    cursor: pointer;
+}
+
+.operation .contrastMaterial {
+    margin: 20px 0 10px 0;
+}
+
+.allApplication {
+    margin-bottom: 10px;
+}
+
+/* ------------------结算----------------- */
+
+.countBox {
+    height: 70px;
+    border: solid 1px #e0e0e0;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #666;
+    line-height: 70px;
+    padding-left: 45px;
+    background-color: #fff;
+    position: relative;
+    
+    width: 1240px;
+}
+
+.countBox button {
+    line-height: 44px;
+}
+
+.countBox .revenueText {
+    margin-left: 55px;
+}
+
+.countBox .revenuePrice {
+    font-size: 16px;
+    color: #333;
+}
+
+.countBox .expressPrice {
+    position: absolute;
+    right: 430px;
+}
+
+.countBox .indentText {
+    /* margin-left: 690px; */
+    position: absolute;
+    right: 350px;
+}
+
+.countBox .indentText span,
+.countBox .expressPrice span {
+    color: #e42e2e;
+}
+
+.countBox .indentTotalPrice,
+.countBox .expressPriceNumber {
+    font-size: 24px;
+    color: #e42e2e;
+}
+
+.countBox .settleAccountsBtn {
+    width: 105px;
+    height: 44px;
+    background-color: #ffadb4;
+    color: #fff;
+    font-size: 16px;
+    border: solid 1px #fd3c4c;
+    float: right;
+    outline: none;
+    margin: 13px 30px 0 0;
+    border-radius: 5px;
+}
+
+.countBox .settleAccountsBtn:hover {
+    cursor: pointer;
+    background-color: #e42e2e;
+}
+
+.countBox .addCart {
+    width: 105px;
+    height: 44px;
+    background-color: #ffadb4;
+    color: #fff;
+    font-size: 16px;
+    border: solid 1px #fd3c4c;
+    float: right;
+    outline: none;
+    margin: 13px 20px 0 0;
+    border-radius: 5px;
+}
+
+.countBox .addCart:hover {
+    cursor: pointer;
+    background-color: #e42e2e;
+}
+
+/* -----------------预览----------------- */
+
+.previewBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    height: 500px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    z-index: 9;
+    /* display: none; */
+    opacity: 0;
+    z-index: -1;
+}
+
+.previewBox .titleBox {
+    width: 100%;
+    height: 45px;
+    background-color: #535353;
+    /* border-radius: 8px 8px 0 0; */
+    border-bottom: 1px solid #ccc;
+    color: #fff;
+    text-align: center;
+}
+
+.titleBox .text {
+    font-size: 16px;
+    color: #fff;
+    line-height: 45px;
+}
+
+.titleBox .close {
+    float: right;
+    top: 10px;
+    background-color: #ccc;
+    font-size: 30px;
+    background-color: #535353;
+}
+
+.titleBox .fullscreen {
+    position: absolute;
+    top:13px;
+    right: 65px;
+}
+
+.fullscreen .icon-resize-small {
+    display: none;
+}
+
+.previewBox .filePreview {
+    width: 100%;
+    height: 455px;
+    background-color: #ccc;
+    border-radius: 0px 0px 8px 8px;
+    position: relative;
+}
+
+.filePreview canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.filePreview iframe {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* -----------------无图纸报价 -----------------*/
+
+.dialog {
+    width: 600px;
+    /* height: 350px; */
+}
+
+.dialog .dialog_content {
+    height: 210px;
+    padding: 35px 0 0 30px;
+}
+
+.switchoverType {
+    margin-top: 10px;
+}
+
+.switchoverType>span {
+    display: inline-block;
+    width: 48%;
+}
+
+.switchoverType .knowVolumeBtn {
+    padding-left: 165px;
+    border-right: 2px solid #ccc;
+    color: red;
+}
+
+.switchoverType .knowWeightBtn {
+    padding-left: 55px;
+}
+
+.fileMassageBox .fileInfoForm {
+    overflow: hidden;
+    margin-top: 30px;
+    color: #333;
+    font-size: 16px;
+}
+
+.fileInfoForm .required {
+    color: red;
+}
+
+.fileInfoForm .nameBox {
+    margin-left: -11px;
+}
+
+.fileInfoForm>div {
+    width: 50%;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.fileInfoForm>div>div{
+    margin-bottom: 20px;
+}
+
+.fileInfoForm input {
+    width: 150px;
+    height: 28px;
+    border: solid 1px #d2d2d2;
+    padding-left: 5px;
+}
+
+.fileInfoForm .unit {
+    font-size: 14px;
+    color: #666;
+}
+
+.dialog .dialogBtn {
+    width: 100%;
+}
+
+.dialogBtn>button {
+    width: 90px;
+    height: 35px;
+    border: solid 1px #bfbfbf;
+    border-radius: 10px;
+    background-color: #fff;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+}
+
+.dialogBtn>button:hover {
+    cursor: pointer
+}
+
+.dialogBtn .close_button {
+    margin-left: 25px;
+}
+
+.dialogBtn .confirm {
+    margin-left: 310px;
+    background-color: #535353;
+    color: #fff;
+    border: none;
+}
+
+.fileInfoForm>.knowWeightright {
+    margin-bottom: 0px;
+}
+
+.knowWeightImg {
+    width: 90px;
+    height: 90px;
+    /* border: 1px solid #ccc; */
+    margin-left: 50px;
+    position: absolute;
+    right: 135px;
+    bottom: 100px;
+}
+
+.knowWeightImg img {
+    width: 100%;
+    height: 100%;
+}
+
+.knowWeightImg .upImg {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    display: none;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.knowWeightImg:hover .upImg {
+    display: block;
+    cursor: pointer;
+}
+
+.materialsBox {
+    padding-left: 12px;
+}
+
+.materialsBox select {
+    width: 150px;
+    height: 28px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+/* -----------------上传进度条-------------- */
+
+.ossfile {
+    width: 160px;
+    padding: 25px 25px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #999;
+    position: absolute;
+    left: 2px;
+    top: 45px;
+    display: block;
+}
+
+.ossfile>div {
+    width: 130px;
+    margin-left: -5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.progress {
+    margin-top: 3px;
+    width: 120px;
+    height: 10px;
+    /* margin-bottom: 10px; */
+    overflow: hidden;
+    background-color: #f5f5f5;
+    /* border-radius: 4px; */
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+    position: relative;
+}
+
+.progress-bar {
+    background-color: rgb(69, 185, 220);
+    /* background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.14902) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.14902) 50%, rgba(255, 255, 255, 0.14902) 75%, transparent 75%, transparent); */
+    background-size: 40px 40px;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px -1px 0px 0px inset;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 10px;
+    line-height: 20px;
+    text-align: center;
+    transition-delay: 0s;
+    transition-duration: 0.6s;
+    transition-property: width;
+    transition-timing-function: ease;
+    width: 120px;
+    /* position: absolute; */
+}
+
+#console {
+    color: red;
+    z-index: 999;
+    width: 300px;
+    position: absolute;
+    right: 415px;
+    bottom: 20px;
+}
+
+#ossfile b {
+    float: right;
+}
+
+#ossfile b span {
+    line-height: 25px;
+}
+
+#ossfile b i {
+    font-size: 20px;
+}
+
+#ossfile b i.icon-ok {
+    color: #1bad40;
+}
+
+#ossfile b i.icon-warning-sign {
+    color: #e42e2e;
+}
+
+/* -------------表面处理--------------- */
+
+.surfaceSelectMask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 9;
+    display: none;
+}
+
+.surfaceSelectBox {
+    width: 430px;
+    height: 245px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.surfaceSelectBox .titleBox {
+    overflow: hidden;
+    height: 50px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.titleBox .titleText {
+    font-size: 18px;
+    color: #999;
+    line-height: 50px;
+    margin-left: 20px;
+}
+
+.surfaceSelectBox .surfaceBodyBox {
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.surfaceBodyBox>div {
+    float: left;
+}
+
+.surfaceBodyBox .surfaceTypeBox {
+    width: 100%;
+    /* border-right: 1px solid #e4e4e4; */
+}
+
+.surfaceTypeBox .surfaceTypeUl {
+    height: 140px;
+    overflow: auto;
+}
+
+.surfaceTypeUl::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.surfaceTypeUl::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.surfaceTypeUl::-webkit-scrollbar-track {
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.surfaceTypeBox .surfaceTypeItem {
+    width: 100px;
+    height: 35px;
+    border: 1px solid #e4e4e4;
+    text-align: center;
+    line-height: 32px;
+    float: left;
+    margin: 40px 0 0 75px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.surfaceTypeBox .surfaceTypeItem:hover {
+    border-color: #277dc2;
+}
+
+/* .surfaceActive {
+    background-color: #277dc2;
+    color: #fff;
+} */
+
+.surfaceTypeItem a {
+    color: #999;
+}
+
+.surfaceSelectBox .sprayPaintBox {
+    width: 410px;
+    height: 300px;
+    border-right: 1px solid #ccc;
+    padding: 15px 0px 0px 20px;
+    /* background-color: red; */
+}
+
+.sprayPaintBox .sprayPaintUl {
+    overflow: hidden;
+    margin-left: -20px;
+    height: 100%;
+    overflow: auto;
+}
+
+.sprayPaintUl::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.sprayPaintUl::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.sprayPaintUl::-webkit-scrollbar-track {
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.sprayPaintUl .sprayPaintItem {
+    width: 112px;
+    height: 125px;
+    /* background-color: #ccc; */
+    float: left;
+    padding: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #999;
+    margin: 0px 0 17px 17px;
+}
+
+.sprayPaintUl .sprayPaintItem:hover {
+    border-color: #277dc2;
+}
+
+.sprayPaintItem img {
+    width: 100px;
+    height: 95px;
+}
+
+.sprayPaintItem .introduceText {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+.sprayPaintColorBox {
+    width: 267px;
+    height: 300px;
+    overflow: auto;
+    display: none;
+}
+
+.sprayPaintColorBox::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.sprayPaintColorBox::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.sprayPaintColorBox::-webkit-scrollbar-track {
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.sprayPaintColorBox .colorMessageBox {
+    padding: 15px;
+    font-size: 14px;
+    color: #999;
+    border-bottom: 1px solid #ccc;
+    display: none;
+}
+
+.colorMessageBox .color {
+    margin-left: 25px;
+    color: #277dc2;
+}
+
+.selectColorBox {
+    margin-top: 15px;
+}
+
+.selectColorBox input {
+    width: 150px;
+    height: 30px;
+    margin-left: 10px;
+    padding-left: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.colorListBox {
+    padding: 15px;
+    font-size: 14px;
+    color: #999;
+    border-bottom: 1px solid #ccc;
+    display: none;
+}
+
+.deliveryTime .oilInjection {
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+    display: none;
+}
+
+/* ---------------颜色-------------- */
+
+.colorListBox .colorListUl {
+    width: 100%;
+    margin: 15px 0 0 -10px;
+    overflow: hidden;
+}
+
+.colorListUl li {
+    width: 28px;
+    height: 28px;
+    background-color: #277dc2;
+    float: left;
+    margin: 0px 0px 10px 10px;
+    position: relative;
+}
+
+.colorListUl li:hover {
+    cursor: pointer;
+}
+
+.colorListUl li span {
+    position: absolute;
+    opacity: 0;
+}
+
+.colorListUl .brightRed {
+    background-color: rgb(242, 72, 85);
+}
+
+.colorListUl .mintGreen {
+    background-color: rgb(246, 234, 71);
+}
+
+.colorListUl .lightPink {
+    background-color: rgb(234, 122, 70);
+}
+
+.colorListUl .LightBrown {
+    background-color: rgb(226, 106, 111);
+}
+
+.colorListUl .greyViolet {
+    background-color: rgb(195, 115, 197);
+}
+
+.colorListUl .BronzeBrown {
+    background-color: rgb(173, 162, 164);
+}
+
+.colorListUl .black {
+    background-color: rgb(78, 79, 83);
+}
+
+.colorListUl .lakePlacidBlue {
+    background-color: rgb(131, 81, 139);
+}
+
+.colorListUl .orange {
+    background-color: rgb(108, 136, 177);
+}
+
+.colorListUl .beige {
+    background-color: rgb(236, 236, 142);
+}
+
+.colorListUl .beiblackishGreenge {
+    background-color: rgb(93, 181, 104);
+}
+
+.colorListUl .lemonYellow {
+    background-color: rgb(68, 146, 188);
+}
+
+.colorListUl .appleGreen {
+    background-color: rgb(154, 138, 100);
+}
+
+.colorListUl .FrenchGrey {
+    background-color: rgb(224, 228, 230);
+}
+
+.colorListUl .youngGirlPowder {
+    background-color: rgb(225, 130, 154);
+}
+
+.colorListUl .darkGrey {
+    background-color: rgb(124, 73, 88);
+}
+
+.colorListUl .mazarine {
+    background-color: rgb(61, 87, 160);
+}
+
+.colorListUl .DarkBrown {
+    background-color: rgb(103, 93, 96);
+}
+
+.colorListUl .peach {
+    background-color: rgb(216, 136, 156);
+}
+
+.colorListUl .skyBlue {
+    background-color: rgb(79, 168, 178);
+}
+
+.colorListUl .scarlet {
+    background-color: rgb(155, 218, 115);
+}
+
+.colorListUl .PostAndGreen {
+    background-color: rgb(226, 57, 110);
+}
+
+.colorListUl .violet {
+    background-color: rgb(79, 68, 78);
+}
+
+.colorListUl .white {
+    border: 1px solid #f4f4f4;
+    background-color: rgb(255, 255, 255);
+}
+
+.sprayPaintIntroduce {
+    font-size: 14px;
+    color: #999;
+    padding: 15px;
+}
+
+.sprayPaintIntroduce .title {
+    margin-bottom: 15px;
+}
+
+.sprayPaintIntroduce .introduceInfo {
+    font-size: 12px;
+}
+
+.buttonBox {
+    text-align: center;
+}
+
+.buttonBox button {
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    outline: none;
+}
+
+.buttonBox button:hover {
+    cursor: pointer;
+}
+
+.buttonBox .shut {
+    margin-left: 230px;
+    background-color: #ccc;
+}
+
+.buttonBox .confirm {
+    margin-left: 15px;
+    background-color: #277dc2;
+}
+
+.formBox {
+    z-index: 100;
+}
+
+.msg {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 15px;
+    text-align: center;
+    font-size: 20px;
+    color: red;
+}
+
+/*-------------------------- 价格固定定位-------- */
+
+.quoteFixed {
+    position: fixed;
+    bottom: 0;
+}
+
+.SuccessMask {
+    font-size: 16px;
+    width: 300px;
+    line-height: normal;
+    height: auto;
+    padding: 15px;
+    color: #999;
+}
+
+/* --------------拖拽------------ */
+
+.dragging,.dragging * {
+    cursor: move !important;
+}
+
+.dragged {
+    position: absolute;
+    left: 50%;
+    margin-left: -50%;
+    z-index: 2000;
+    background-color: #fff;
+}
+
+.draggingBox li.placeholder {
+    position: relative;
+    width: 100%;
+    height: 234px;
+    background-color: #f4f4f4;
+}
+
+.draggingBox li.placeholder:before {
+    position: absolute;
+}
+
+.previewBox .editImg {
+    width: 80px;
+    height: 30px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #666;
+    border-radius: 3px;
+    outline: none;
+    margin: 10px 0 10px 20px;
+    position: absolute;
+    top: 55px;
+    left: 20px;
+    z-index: 999;
+}
+
+/* ---------swiper--------------[ */
+.swiper-container {
+    width: 1200px;
+    height: 60px;
+    overflow: hidden;
+    /* background-image:url('../../image/indexbanner.jpg'); */
+    background-color: #fff;
+}
+
+.swiper-wrapper .swiper-slide {
+    text-align: center;
+    font-size: 14px;
+    line-height: 60px;
+    /* font-weight: 600; */
+    color: #535353;
+}
+
+/* ----------------价格限制----------------- */
+.priceRestrict {
+    width: 380px;
+    height: 220px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: none;
+}
+
+.priceRestrict .priceTop {
+    height: 35px;
+    background-color: #535353;
+}
+
+.priceTop .close {
+    top: 5px;
+    right: 10px;
+    background-color: #535353;
+}
+
+.restrictInfo {
+    height: 130px;
+    text-align: center;
+    line-height: 130px;
+    color: #666;
+    font-size: 14px;
+    padding: 0 15px;
+}
+
+.priceRestrict .btn {
+    width: 65px;
+    height: 30px;
+    background-color: #535353;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+.priceRestrict .btn:hover {
+    cursor: pointer;
+}
+
+#contact {
+    border-top: 8px solid #1b2f4e;
+}
+
+.deliveryTime .minPriceHint {
+    color: #f0a934;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.deliveryTime .minPriceHint:hover {
+    cursor: pointer;
+}
+
+
+/* 新增格式提示 */
+.addFormatBox {
+    width: 100%;
+    height: 1123px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    z-index: 9;
+    display: none;
+}
+
+.upBox .tipsDialog {
+    position: absolute;
+    left: 60px;
+    top: 27px;
+    /* width: 207px; */
+    z-index: 99;
+    display: none;
+}
+
+/* .tipsDialog .gifBox {
+    position: absolute;
+    top: 150px;
+    left: 80px;
+} */
+
+.tipsDialog .close {
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    background-color: #fff;
+    position: absolute;
+    right: -20px;   
+    top: 35px;
+    color: #666;
+    line-height: 22px;
+}
+
+.minPricelink {
+    color: #00AEF3;
+}
+
+.minPricelink:hover {
+    cursor: pointer;
+}
+
+.layui-layer-tips .layui-layer-content {
+    color: #333 !important;
+    box-shadow: 0px -1px 11px rgba(0,0,0,.4)!important;
+}
+
+
+
+.lowestPriceBox {
+    position: relative;
+    font-size: 12px;
+}
+
+.lowestPricePrompt {
+    height: 108px;
+    width: 280px;
+    position: absolute;
+    top: 15px;
+    left: -70px;
+    display: none;
+}
+
+.lowestPricePrompt>div {
+    width: 280px;
+    height: 92px;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 15px;
+    left: 0px;
+    background-color: #fff;
+    color: #333;
+    z-index: 999;
+    padding: 10px 11px;
+    line-height: 23px;
+    border-radius: 3px;
+    box-shadow: 0px -1px 5px #ccc;
+}
+
+.lowestPriceBox:hover .lowestPricePrompt{
+    display: block;
+}
+
+.sjx{
+    position: absolute;
+    bottom: 111px;
+    right: 145px;
+    z-index: 998;
+    /* // width: 30px;
+    // height: 30px;
+    // border: 1px solid #cccccc;
+    // transform: rotate3d(1, 1, 1, 75deg);
+    // background: #ffffff;
+    // box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.3); */
+  }
+  .sjx:before,.sjx:after{
+    position: absolute;
+    content: '';
+    border-top: 10px transparent dashed;
+    border-left: 10px transparent dashed;
+    border-right: 10px transparent dashed;
+    border-bottom: 10px #fff solid;
+  }
+  .sjx:before{
+    border-bottom: 10px #cccccc solid;
+  }
+  .sjx:after{
+    top: 1px; /*覆盖并错开1px*/
+    border-bottom: 10px #fff solid;
+  }

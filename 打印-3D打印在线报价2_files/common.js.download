@@ -1,0 +1,700 @@
+// http://47.106.92.209:8080/shopping/
+// http://192.168.10.127:8080/shopping/
+ var ajaxUrl = 'https://www.qsy3d.com/website/';
+// var ajaxUrl = 'http://www.onlyoneu.com/';
+//var ajaxUrl = 'http://192.168.181.62:9255/';
+// var ajaxUrl = 'http://192.168.181.57:9255/';
+// var ajaxUrl = 'http://192.168.181.60:9255/';
+//SEO测试
+// var ajaxUrl = 'https://www.qsy13.com/website/';
+//测试服
+// var ajaxUrl = 'http://192.168.181.13:9255/';
+// var ajaxUrl = 'http://192.168.181.13:9257/';
+ var homeUrl = 'https://www.qsy3d.com/';
+//var homeUrl = 'https://www.qsy13.com/'; //首页
+
+var mobileLinkUrl = 'http://m.qsy3d.com/';
+// cookie路径
+var setCookieUrl = '/';
+// 获取浏览器信息
+function getBrowser() {
+    var is360 = false;
+    var isIE = false;
+    var isFirefox = false;
+    var isChrome = false;
+    var isEdge = false;
+    var broName = 'Runing';
+    var str = '';
+    var strStart = 0;
+    var strStop = 0;
+    var arr = new Array();
+    var temp = '';
+    var userAgent = window.navigator.userAgent;
+    /*alert(userAgent);*/
+    //FireFox
+    if (userAgent.indexOf('Firefox') != -1) {
+    isFireFox = true;
+    /*broName = 'FireFox浏览器';*/
+    strStart = userAgent.indexOf('Firefox');
+    temp = userAgent.substring(strStart);
+    broName = temp.replace('/', '版本号')
+    }
+    //Edge
+    if (userAgent.indexOf('Edge') != -1) {
+    isEdge = true;
+    /*broName = 'Edge浏览器';*/
+    strStart = userAgent.indexOf('Edge');
+    temp = userAgent.substring(strStart);
+    broName = temp.replace('/', '版本号');
+    }
+    
+    //IE浏览器
+    if (userAgent.indexOf('NET') != -1 && userAgent.indexOf("rv") != -1) {
+    isIE = true;
+    /*broName = 'IE浏览器'; */
+    strStart = userAgent.indexOf('rv');
+    strStop = userAgent.indexOf(')');
+    temp = userAgent.substring(strStart, strStop);
+    broName = temp.replace('rv', 'IE').replace(':', '版本号');
+    }
+    
+    //360极速模式可以区分360安全浏览器和360极速浏览器
+    if (userAgent.indexOf('WOW') != -1 && userAgent.indexOf("NET") < 0 && userAgent.indexOf("Firefox") < 0) {
+    if(navigator.javaEnabled()){
+    is360 = true;
+    broName = '360安全浏览器-极速模式';
+    }else{
+    is360 = true;
+    broName = '360极速浏览器-极速模式';
+    } 
+    }
+    
+    //360兼容
+    if (userAgent.indexOf('WOW') != -1 && userAgent.indexOf("NET") != -1 && userAgent.indexOf("MSIE") != -1 && userAgent.indexOf("rv") < 0) {
+    is360 = true;
+    broName = '360兼容模式';
+    }
+    
+    //Chrome浏览器
+    if (userAgent.indexOf('WOW') < 0 && userAgent.indexOf("Edge") < 0) {
+    isChrome = true;
+    /*broName = 'Chrome浏览器';*/
+    strStart = userAgent.indexOf('Chrome');
+    strStop = userAgent.indexOf(' Safari');
+    temp = userAgent.substring(strStart, strStop);
+    broName = temp.replace('/', '版本号');
+    }
+    return broName;
+}
+
+// 进入时间
+var startTime = Date.parse(new Date())
+// url
+var strUrl=window.location.href;
+
+// 截取文件名
+var arrUrl = strUrl.split('?')[0].split("/");
+var pageName = arrUrl[arrUrl.length-1].split('.')[0]
+
+// 获取设备信息
+var equipment = ''; 
+if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    equipment = '手机'
+    if(pageName != 'myDemand' && pageName != 'LookingDesign') {
+        //window.location.href = mobileLinkUrl
+		if(getQueryString('inviteCode') == null) {
+            window.location.href = mobileLinkUrl
+        }else{
+            window.location.href = mobileLinkUrl+'#/?inviteCode='+getQueryString('inviteCode')
+        }
+
+    }
+} else {
+    equipment = '电脑'
+}
+
+// 动态引入js（获取ip）
+var ip = '';
+var adddress = '';
+var province = '';
+var city = '';
+function loadJS(url) { //加载js
+    loadScript = document.createElement("script");
+    loadScript.type = "text/javascript";
+    loadScript.src = url;
+    document.body.appendChild(loadScript);
+}
+loadJS("https://pv.sohu.com/cityjson?ie=utf-8");
+loadScript.onload = function () {
+    ip = returnCitySN["cip"];
+    adddress = returnCitySN["cname"]
+    if(adddress.split('省').length != 1) {
+        province = adddress.split('省')[0]+'省'
+        city = adddress.split('省')[1].split('市')[0]+'市'
+    }else if(adddress.split('区').length != 1){
+        province = adddress.split('区')[0]+'区'
+        city = adddress.split('区')[1].split('市')[0]+'市'
+    }else{
+        province = adddress.split('市')[0]+'市'
+    }
+}
+
+// 切换页签
+var hiddenProperty = 'hidden' in document ? 'hidden' :    
+'webkitHidden' in document ? 'webkitHidden' :    
+'mozHidden' in document ? 'mozHidden' :    
+null;
+var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+var onVisibilityChange = function(){
+    if (!document[hiddenProperty]) {
+        // console.log('回来');
+        startTime = Date.parse(new Date())
+    }else{
+        // console.log('离开')
+        var endTime = Date.parse(new Date())
+        $.ajax({
+            url:ajaxUrl+'pageStatistics/insertPageStatistics',
+            type:'post',
+            headers:{token:userCookie==null?'':userCookie,},data:JSON.stringify({
+                token:getCookie('token'),
+                pageName:pageName,
+                pageUrl:strUrl.split('?')[0],
+                moduleName:$('title').html(),
+                residenceTime:endTime-startTime,
+                browser:getBrowser(),
+                equipment:equipment,
+                ip:ip,
+                province:province,
+                city:city
+            }),
+            contentType:'application/json',
+            success:function(data){
+                if(data.code != 0){
+                    layer.alert(data.msg, {icon: 5});;
+                }
+            }
+        })
+    }
+}
+document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+
+
+function setCookie(cookieName,cookieValue,cookieDates,path){
+	var d = new Date();
+	d.setHours(d.getHours()+cookieDates);
+	document.cookie = cookieName+"="+cookieValue+";expires="+d.toGMTString()+";path=" + path;
+}
+
+// function setCookie(name, value, hours, path) {
+//     var cdata = name + "=" + value;
+//     if (hours) {
+//         var date = new Date();
+//         date.setHours(date.getHours() + hours);
+//         cdata += "; expires=" + date.toGMTString();
+//     }
+//     cdata += path ? ("; path=" + path) : "";
+//     document.cookie = cdata;
+// }
+
+function getCookie(name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg)) {
+        // return unescape(arr[2]);
+        return arr[2];
+    } else {
+        return null;
+    }
+}
+
+// 退出登录
+$('.userInfoBox .logOut').on('click', function () {
+    delCookie();
+    window.location.href = '../login/login.html';
+})
+
+var userCookie = getCookie('token');
+var designShopName = getCookie('designShopName');
+var iconImg = getCookie('iconImg');
+var userName = getCookie('userName');
+var designApply = getCookie('designApply');
+var designerApply = getCookie('designerApply');
+var monthlyKnots = getCookie('monthlyKnots');
+var encodeUserName = decodeURI(userName);
+
+// $('#header .logo a,.indexLink a').attr('href', ajaxUrl);
+$('#header .logo a,.indexLink a').attr('href', location.origin);
+
+function delCookie() {
+    setCookie('token', '', -1, setCookieUrl);
+    setCookie('designShopName', '', -1, setCookieUrl);
+    setCookie('userName', '', -1, setCookieUrl);
+    setCookie('iconImg', '', -1, setCookieUrl);
+    setCookie('designApply', '', -1, setCookieUrl);
+    setCookie('designerApply', '', -1, setCookieUrl);
+    setCookie('monthlyKnots', '', -1, setCookieUrl);
+}
+
+// 店铺管理
+$('.right .storeManagement').mouseover(function () {
+    $(this).css('box-shadow', '0px 4px 3px 1px rgba(0, 0, 0, 0.2)').css('background-color', '#fff')
+    $('.right .storeList').show();
+}).mouseout(function () {
+    $(this).css('background-color', '#e6e6e6').css('box-shadow', 'none');
+    $('.right .storeList').hide();
+})
+
+
+if (!!userCookie) {
+    $('.headerLoginBtn .loginText').hide();
+    $('.headerLoginBtn>.userName').show();
+    // 购物车数量
+    $.ajax({
+        url: ajaxUrl + 'cart/getCartSize',
+        type: 'post',
+        headers:{token:userCookie==null?'':userCookie,},data:JSON.stringify({
+            'token': userCookie
+        }),
+        contentType: 'application/json',
+        success: function (backData) {
+            if(backData.code == 0) {
+                $('.shoppingCart .cartNumber').html(backData.obj.count);
+            }else if(backData.code == 60){
+                layer.alert(backData.msg,{ icon: 5, closeBtn: 0 },function(){
+                    delCookie();
+                    window.location.href = '../login/login.html';
+                });
+            } else {
+                layer.alert(backData.msg, {icon: 5});
+            }
+        }
+    })
+
+    // 获取用户积分
+    $.ajax({
+        url: ajaxUrl + 'Integral/TotalByUserId',
+        type: 'post',
+        headers:{token:userCookie==null?'':userCookie,},data:JSON.stringify({
+            token: userCookie,
+        }),
+        contentType: 'application/json',
+        success: function (backData) {
+            if(backData.code == 0) {
+                $('.userInfoBox .topIntegral span').html(backData.obj);
+            }else if(backData.code == 60){
+                layer.alert(backData.msg,{ icon: 5, closeBtn: 0 },function(){
+                    delCookie();
+                    window.location.href = '../login/login.html';
+                });
+            } else {
+                layer.alert(backData.msg, {icon: 5});
+            }
+        }
+    })
+
+    if ((iconImg == 'null' || iconImg == null ) && iconImg != '') {
+        iconImg = '../image/usericon2.png';
+    }
+
+    $('.headerLoginBtn .userName img,.userInfoBox img').attr('src', iconImg);
+
+    // 请求判断是不是设计师(更新token)
+    $.ajax({
+        url:ajaxUrl+'user/refreshToken',
+        type:'post',
+        headers:{token:userCookie==null?'':userCookie,},data:JSON.stringify({
+            token:userCookie==null?'':userCookie,
+        }),
+        contentType:'application/json',
+        success:function(data){
+            if(data.code == 0) {
+                if(data.obj.designerApply == 'Y') {
+                    setCookie('designerApply', '', -1, setCookieUrl);
+                    setCookie('designerApply', 'Y', 12, setCookieUrl);
+                }
+            }else if(data.code == 60){
+                // layer.alert(data.msg,{ icon: 5, closeBtn: 0 },function(){
+                //     delCookie();
+                //     window.location.href = '../login/login.html';
+                // });
+            } else {
+                layer.alert(data.msg, {icon: 5});
+            }
+        }
+    })
+
+    // 是否申请过设计师
+    if(designerApply != 'Y') {
+        $('.menuBox .designMenu').hide();
+    }
+
+    // 是否开店
+    if(designApply != 'Y') {
+        $('.menuBox .shopMenu').hide();
+    }
+
+    // 是否月结用户
+    if(monthlyKnots != 'Y') {
+        $('.menuBox .monthlyMenu').hide();
+    }
+}
+
+
+//获取url中的参数的值
+function getQueryString(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+    var r = encodeURI(window.location.search).substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
+}
+
+//声明变量存放验证码
+var codenumber = ""
+// 获取验证码
+function verificationCode(codePhone) {
+    if ($('.phoneBox .userName').val() == '') {
+        layer.alert('请输入手机号',{ icon: 5})
+        return false;
+    }
+    function isPoneAvailable(str) {
+        var myreg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
+        if (!myreg.test(str)) {
+            layer.alert('请输入正确手机号',{ icon: 5})
+        } else {
+            //禁用按钮
+            $('.codeBtn').attr({
+                "disabled": "disabled"
+            }).css('background-color', 'white').css('color', '#999');
+            $.ajax({
+                url: ajaxUrl + 'message/verificationCode',
+                type: 'post',
+                headers:{token:userCookie==null?'':userCookie,},data:JSON.stringify({
+                    'phone': codePhone
+                }),
+                contentType: 'application/json',
+                success: function (backData) {
+                    //console.log(backData);
+                    if (backData.code == 0) {
+                        $('.phoneCodeHint').fadeIn(300).fadeOut(6500);
+                    
+                        var time = 60;
+                        var timeId = setInterval(function () {
+                            if (time > 0) {
+                                time--;
+                                $('.codeBtn').val(time + 'S重新发送');
+                            } else {
+                                clearInterval(timeId);
+                                $('.codeBtn').val('获取验证码').removeAttr("disabled").mouseenter(function () {
+                                    $('.codeBtn').css('background-color', '#e42f2b').css('color', 'white')
+                                }).mouseleave(function () {
+                                    $('.codeBtn').css('background-color', 'white').css('color', '#666')
+                                });
+                            }
+                        }, 1000)
+
+                    }else if(backData.code == 60){
+                        layer.alert(backData.msg,{ icon: 5, closeBtn: 0 },function(){
+                            delCookie();
+                            window.location.href = '../login/login.html';
+                        });
+                    } else {
+                        layer.alert(backData.msg, {icon: 5});
+                    }
+                }
+            })
+        }
+    }
+    isPoneAvailable(codePhone)
+}
+
+// 账号登录封装
+function numberLogin(callback) {
+    $.ajax({
+        url: ajaxUrl + 'user/login',
+        type: 'post',
+        headers:{token:userCookie==null?'':userCookie,},data:JSON.stringify({
+            'name': $.trim($('.accountNumberBox .userName').val()),
+            'password': $.trim($('#Ciphertext').val().toUpperCase()),
+            "province":province,
+        }),
+        contentType: 'application/json',
+        success: callback,
+    })
+}
+
+// 手机登录封装
+function phoneLogin(inviteCode,callback) {
+    $.ajax({
+        url: ajaxUrl + 'user/loginByPhone',
+        type: 'post',
+        headers:{token:userCookie==null?'':userCookie,},data:JSON.stringify({
+            'phone': $('.phoneBox .userName').val(),
+            'invitationUserId':inviteCode,
+            "province":province,
+        }),
+        contentType: 'application/json',
+        success: callback,
+    })
+}
+
+// ------------------OSS--------------------
+function random_string(len) {
+    len = len || 32;
+    var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = chars.length;
+    var pwd = '';
+    for (i = 0; i < len; i++) {
+        pwd += chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return pwd;
+}
+
+function get_suffix(filename) {
+    pos = filename.lastIndexOf('.')
+    suffix = ''
+    if (pos != -1) {
+        suffix = filename.substring(pos)
+    }
+    return suffix;
+}
+
+function calculate_object_name(filename) {
+    if (g_object_name_type == 'local_name') {
+        g_object_name += "${filename}"
+    } else if (g_object_name_type == 'random_name') {
+        suffix = get_suffix(filename)
+        g_object_name = random_string(10) + suffix
+    }
+    return ''
+}
+
+function get_uploaded_object_name(filename) {
+    if (g_object_name_type == 'local_name') {
+        tmp_name = g_object_name
+        tmp_name = tmp_name.replace("${filename}", filename);
+        return tmp_name
+    } else if (g_object_name_type == 'random_name') {
+        return g_object_name
+    }
+}
+
+function calculate_object_name(filename) {
+    if (g_object_name_type == 'local_name') {
+        g_object_name += "${filename}"
+    } else if (g_object_name_type == 'random_name') {
+        suffix = get_suffix(filename)
+        g_object_name = random_string(10) + suffix
+    }
+    return ''
+}
+
+function get_uploaded_object_name(filename) {
+    if (g_object_name_type == 'local_name') {
+        tmp_name = g_object_name
+        tmp_name = tmp_name.replace("${filename}", filename);
+        return tmp_name
+    } else if (g_object_name_type == 'random_name') {
+        return g_object_name
+    }
+}
+
+// -----------------oss----------------------
+
+// 手机账号切换
+$('.title .numberLogin').on('click', function () {
+    $(this).css('color', '#e42e2e').siblings('.phoneLogin').css('color', '#666');
+    $('.accountNumberBox').show();
+    $('.phoneBox').hide();
+})
+
+$('.title .phoneLogin').on('click', function () {
+    $(this).css('color', '#e42e2e').siblings('.numberLogin').css('color', '#666');
+    $('.accountNumberBox').hide();
+    $('.phoneBox').show();
+})
+
+$('.formBox .close').on('click', function () {
+    $('.formBox').hide();
+})
+
+
+// 更多
+$('#header .titleList .moreBtn,.moreBtn .moreBox').mouseover(function () {
+    $('.moreBox').show();
+}).mouseout(function () {
+    $('.moreBox').hide();
+})
+
+// 个人信息
+$('#header .headerLoginBtn .userName,.headerLoginBtn .userInfoBox').mouseover(function () {
+    $('.userInfoBox').show();
+}).mouseout(function () {
+    $('.userInfoBox').hide();
+})
+
+// 统计
+$('#cnzz_stat_icon_1275442429').css('opacity', '0').css('position', 'absolute');
+
+
+// ----------------------------------------------
+
+//自动居中对话框
+function autoCenter(el) {
+    var bodyW = $(window).width();
+    var bodyH = $(window).height();
+    var elW = el.width();
+    var elH = el.height();
+
+    $("#dialog").css({
+        "left": (bodyW - elW) / 2 + 'px',
+        "top": (bodyH - elH) / 2 + $(window).scrollTop() + 'px'
+    });
+};
+
+function dialog(open, callback) {
+
+    var $dialog = $("#dialog");
+    var $dialogMask = $("#dialogMask");
+
+
+    //点击弹出对话框
+    // $("#callout").click(function () {
+    // open.unbind().on('click',function () {
+
+    //     $dialog.css("display", "block");
+    //     $dialogMask.css("display", "block");
+    //     autoCenter($dialog);
+    // });
+
+    //禁止选中对话框内容
+    if (document.attachEvent) { //ie的事件监听，拖拽div时禁止选中内容，firefox与chrome已在css中设置过-moz-user-select: none; -webkit-user-select: none;
+        g('dialog').attachEvent('onselectstart', function () {
+            return false;
+        });
+    }
+    //声明需要用到的变量
+    var mx = 0,
+        my = 0; //鼠标x、y轴坐标（相对于left，top）
+    var dx = 0,
+        dy = 0; //对话框坐标（同上）
+    var isDraging = false; //不可拖动
+
+    //鼠标按下
+    $("#move_part").mousedown(function (e) {
+        e = e || window.event;
+        mx = e.pageX; //点击时鼠标X坐标
+        my = e.pageY; //点击时鼠标Y坐标
+        dx = $dialog.offset().left;
+        dy = $dialog.offset().top;
+        isDraging = true; //标记对话框可拖动                
+    });
+
+    //鼠标移动更新窗口位置
+    $(document).mousemove(function (e) {
+        var e = e || window.event;
+        var x = e.pageX; //移动时鼠标X坐标
+        var y = e.pageY; //移动时鼠标Y坐标
+        if (isDraging) { //判断对话框能否拖动
+            var moveX = dx + x - mx; //移动后对话框新的left值
+            var moveY = dy + y - my; //移动后对话框新的top值
+            //设置拖动范围
+            var pageW = $(window).width();
+            var pageH = $(window).height();
+            var dialogW = $dialog.width();
+            var dialogH = $dialog.height();
+            var maxX = pageW - dialogW; //X轴可拖动最大值
+            var maxY = pageH - dialogH; //Y轴可拖动最大值
+            moveX = Math.min(Math.max(0, moveX), maxX); //X轴可拖动范围
+            // moveY = Math.min(Math.max(0, moveY), maxY); //Y轴可拖动范围
+            //重新设置对话框的left、top
+            $dialog.css({
+                "left": moveX + 'px',
+                "top": moveY + 'px'
+            });
+        };
+    });
+
+    //鼠标离开
+    $("#move_part").mouseup(function () {
+        isDraging = false;
+    });
+
+    //点击关闭对话框
+    $("#close,.topClose").click(function () {
+        $dialog.css("display", "none");
+        $dialogMask.css("display", "none");
+    });
+
+    //窗口大小改变时，对话框始终居中
+    window.onresize = function () {
+        autoCenter($dialog);
+    };
+    // 确定
+    $('.dialogBtn .confirm').unbind().on('click', callback);
+};
+
+$('input[type=text]:not(:disabled),input[type=number]:not(:disabled)').on('keyup',function(){
+    $(this).val($.trim($(this).val()));  
+}); 
+
+// 侧边栏
+$('.sidebar .wechat').mouseout(function(){
+    $('.QRcodeBox').show()
+}).mouseleave(function () { 
+    $('.QRcodeBox').hide()
+})
+
+$('.sidebar .top').click(function(){
+    $('html , body').animate({scrollTop: 0},'slow');
+})
+
+$('#newBridge .nb-middle').remove();
+
+function ajax(obj,done) {
+    defaultSettings = {
+        url: ajaxUrl + obj.url,
+        headers:{token:userCookie==null?'':userCookie},
+        data: JSON.stringify(obj.data),
+        type: obj.type || 'post',
+        //cache: false,//浏览器缓存get生效
+        contentType:'application/json',
+        success:function(data){
+            // console.log(data);
+            if (data.code == 0) {
+                // alert(data.mas)
+                done(data);
+            } else if (data.code == 60){
+                layer.alert(data.msg,{ icon: 5, closeBtn: 0 },function(){
+                    delCookie();
+                    window.location.href = '../login/login.html';
+                });
+            } else {
+                layer.alert(data.msg, {icon: 5});
+            }
+        },
+        error:function (err) {
+            layer.alert(err, {icon: 5});
+        }
+    }
+    return $.ajax(defaultSettings)
+}
+
+// var obj = {
+//     url:ajaxUrl+'cart/getCartSize',
+//     data:{token: "49d04ecfe4f44043bad085b39cee4c08"},
+// }
+
+// <!-- GrowingIO Analytics code version 2.1 -->
+// <!-- Copyright 2015-2018 GrowingIO, Inc. More info available at http://www.growingio.com -->
+
+!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.giocdn.com/2.1/gio.js","gio");
+  gio('init','8ffc66a67e3663a5', {});
+
+//custom page code begin here
+
+//custom page code end here
+
+gio('send');
+
+// <!-- End GrowingIO Analytics code version: 2.1 -->
