@@ -1,48 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- development version, includes helpful console warnings -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="calculator">
-        <div class="calc-container">
-            <form action="">
-                <h1>The Car-culator</h1>
-                <p>Discover your monthly car payment</p>
-                <label for="price">Purchase price</label>
-                <input type="number" name="price" class="currency" v-model.number="price"/>
-                <br />
-                <label for="down-payment">Down payment</label>
-                <input type="number" name="down-payment" class="currency" v-model.number="downPayment"/>
-                <br />
-                
-                <label for="trade-in">Trade-in value</label>
-                <input type="number" name="trade-in" class="currency" v-model.number="tradeIn"/>
-                <br />
-                
-                <label for="length">Term length</label>
-                <select name="length" v-model="length">
-                    <option value="12">12 months</option>
-                    <option value="24">24 months</option>
-                    <option value="36">36 months</option>
-                    <option value="48">48 months</option>
-                    <option value="60" selected>60 months</option>
-                    <option value="72">72 months</option>
-                    <option value="84">84 months</option>
-                </select>
-                
-                <label for="rate">Rate</label>
-                <input type="number" name="rate" v-model.number="rate"/>
-            </form>
-            <div class="payment">{{ calcPayment }} / month</div>
-        </div>
-    </div>
-    
-</body>
-</html>
+---
+layout: default
+title: Hank Quinlan, Horrible Cop
+---
+<div class="blurb">
+	<h1>Hi there, I'm Hank Quinlan!</h1>
+	<p>I'm best known as the horrible cop from <em>A Touch of Evil</em> Don't trust me. <a href="/about">Read more about my life...</a></p>
+</div><!-- /.blurb -->
